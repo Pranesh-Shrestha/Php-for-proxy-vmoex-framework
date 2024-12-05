@@ -91,6 +91,6 @@ jobs:
     - name: Disable TLS in Composer
       run: composer config --global disable-tls true
 
-    - name: Install Dependencies
-      run: composer install
+    - name: Install Dependencies (with ignore platform requirements if needed)
+      run: composer install --ignore-platform-reqs
 
