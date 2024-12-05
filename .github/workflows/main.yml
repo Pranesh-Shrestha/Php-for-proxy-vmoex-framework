@@ -86,7 +86,7 @@ jobs:
       run: curl -sS https://getcomposer.org/installer | php -- --no-plugins --disable-tls
       
     - name: Move Composer to global location
-      run: sudo mv composer.phar /usr/local/bin/composer
+      run: mv composer.phar /usr/local/bin/composer
 
     - name: Disable TLS in Composer
       run: composer config --global disable-tls true
