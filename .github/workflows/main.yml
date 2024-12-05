@@ -81,10 +81,19 @@ jobs:
           SCAN_ID: ${{ needs.create_scan_in_IR_Portal.outputs.scan_id }}
     - name: Checkout the code
       uses: actions/checkout@v3
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'  # Use the appropriate PHP version for your project
+
     - name: Install Composer
-      run: |
-            php -r "copy('http://getcomposer.org/installer', 'composer-setup.php');"
-            php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-            php -r "unlink('composer-setup.php');"
-    - name: Install project dependencies
-      run: composer install --no-scripts --no-autoloader --prefer-dist --no-cache
+      run: curl -sS https://getcomposer.org/installer | php
+
+    - name: Disable TLS in Composer
+      run: composer config --global disable-tls true
+
+    - name: Install Dependencies
+      run: composer install
+
+    - name: Run Tests
+      run: php vendor/bin/phpunit
