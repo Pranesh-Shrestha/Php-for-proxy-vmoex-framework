@@ -82,9 +82,9 @@ jobs:
     - name: Checkout the code
       uses: actions/checkout@v3
     - name: Install Composer
-        run:|
-          php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-          php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-          php -r "unlink('composer-setup.php');"
+      run: |
+            php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+            php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+            php -r "unlink('composer-setup.php');"
     - name: Install project dependencies
       run: composer install --no-scripts --no-autoloader --prefer-dist --no-cache
