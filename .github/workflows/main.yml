@@ -83,7 +83,7 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Install Composer
-      run: curl -k -sS https://getcomposer.org/installer | php
+      run: curl -sS https://getcomposer.org/installer | php -- --no-plugins --disable-tls
 
     - name: Disable TLS in Composer
       run: composer config --global disable-tls true
